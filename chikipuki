@@ -1,0 +1,24 @@
+<main>
+        <section class="services-grid">
+            <article class="service-card">
+                <img src="images/service1.jpg" alt="Консультации">
+                <h3>Профессиональные консультации</h3>
+                <p>Комплексная экспертная поддержка для решения ваших задач</p>
+                <button class="learn-more">Подробнее</button>
+            </article>
+            <article class="service-card">
+                <img src="images/service2.jpg" alt="Разработка">
+                <h3>Разработка решений</h3>
+                <p>Создание индивидуальных решений под ваши потребности</p>
+                <button class="learn-more">Подробнее</button>
+            </article>
+            <article class="service-card">
+                <img src="images/service3.jpg" alt="Поддержка">
+                <h3>Техническая поддержка</h3>
+                <p>Работаем 24/7 для обеспечения бесперебойной работы</p>
+                <button class="learn-more">Подробнее</button>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
