@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Улучшенные таблицы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header-spacer {
+            height: 80px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .table-container {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table-stretched {
+            min-height: 400px;
+            background-color: white;
+        }
+        
+        .table-stretched td {
+            vertical-align: middle;
+            padding: 20px;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+        
+        .sidebar-table {
+            background-color: #f1f3f5;
+        }
+        
+        .main-content-table {
+            background-color: #ffffff;
+        }
+        
+        .table-title {
+            font-weight: 600;
+            color: #343a40;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .table-stretched {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-spacer"></div>
+    
+    <div class="container-fluid">
+        <!-- Основная таблица -->
+        <div class="table-container">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td>
+                        <div class="table-title">Основная таблица</div>
+                        <p>Содержимое основной таблицы может быть здесь</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Группа таблиц -->
+        <div class="row g-3">
+            <!-- Левая боковая таблица -->
+            <div class="col-lg-2 col-md-4">
+                <div class="table-container sidebar-table">
+                    <table class="table table-striped table-bordered table-stretched">
+                        <tr>
+                            <td>
+                                <div class="table-title">Левая панель</div>
+                                <p>Навигация или дополнительные параметры</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Центральная таблица -->
+            <div class="col-lg-8 col-md-8">
+                <div class="table-container main-content-table">
+                    <table class="table table-striped table-bordered table-stretched">
+                        <tr>
+                            <td>
+                                <div class="table-title">Основное содержимое</div>
+                                <p>Здесь может быть основная информация или данные</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Правая боковая таблица -->
+            <div class="col-lg-2 col-md-12">
+                <div class="table-container sidebar-table">
+                    <table class="table table-striped table-bordered table-stretched">
+                        <tr>
+                            <td>
+                                <div class="table-title">Правая панель</div>
+                                <p>Дополнительная информация или инструменты</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Нижняя таблица -->
+        <div class="table-container">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>
+                        <div class="table-title">Нижняя таблица</div>
+                        <p>Футер или дополнительная информация</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

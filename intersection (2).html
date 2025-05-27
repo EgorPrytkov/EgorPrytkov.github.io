@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        main {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .element {
+            position: absolute;
+            will-change: transform;
+            transition: all 0.3s ease-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        #redElement {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            width: 200px;
+            height: 100px;
+        }
+        
+        #blackElement {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            width: 50px;
+            height: 50px;
+        }
+        
+        .controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-weight: 600;
+            color: #5a67d8;
+            transition: all 0.2s ease;
+        }
+        
+        button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="controls">
+            <button onclick="start()">Старт</button>
+            <button onclick="stop()">Стоп</button>
+        </div>
+        <div id="redElement" class="element"></div>
+        <div id="blackElement" class="element"></div>
+    </main>
+
+    <script>
+        const settings = {
+            redElement: {
+                speed: 1,
+                startPoint: 100,
+                maxLeft: 0,
+                maxRight: 500,
+                step: 1
+            },
+            blackElement: {
+                speed: 10,
+                startPoint: 500,
+                maxLeft: 0,
+                maxRight: 500,
+                step: 1
+            }
+        };
+
+        const redElement = document.getElementById('redElement');
+        const blackElement = document.getElementById('blackElement');
+        
+        redElement.style.transform = `translateX(${settings.redElement.startPoint}px)`;
+        blackElement.style.transform = `translateX(${settings.blackElement.startPoint}px)`;
+
+        let animationId = null;
+
+        function checkCollision() {
+            const rect1 = redElement.getBoundingClientRect();
+            const rect2 = blackElement.getBoundingClientRect();
+            
+            return !(
+                rect1.right < rect2.left || 
+                rect1.left > rect2.right || 
+                rect1.bottom < rect2.top || 
+                rect1.top > rect2.bottom
+            );
+        }
+
+        function animate() {
+            let currentRedX = parseInt(redElement.style.transform.split('(')[1]) || settings.redElement.startPoint;
+            currentRedX += settings.redElement.step * settings.redElement.speed;
+            
+            if (currentRedX >= settings.redElement.maxRight || currentRedX <= settings.redElement.maxLeft) {
+                settings.redElement.step *= -1;
+            }
+            
+            redElement.style.transform = `translateX(${currentRedX}px)`;
+            
+            let currentBlackX = parseInt(blackElement.style.transform.split('(')[1]) || settings.blackElement.startPoint;
+            currentBlackX += settings.blackElement.step * settings.blackElement.speed;
+            
+            if (currentBlackX >= settings.blackElement.maxRight || currentBlackX <= settings.blackElement.maxLeft) {
+                settings.blackElement.step *= -1;
+            }
+            
+            blackElement.style.transform = `translateX(${currentBlackX}px)`;
+            
+            if (checkCollision()) {
+                redElement.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)';
+                blackElement.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)';
+            } else {
+                redElement.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)';
+                blackElement.style.background = 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)';
+            }
+            
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function start() {
+            if (!animationId) {
+                animate();
+            }
+        }
+
+        function stop() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        }
+
+        start();
+    </script>
+</body>
+</html>

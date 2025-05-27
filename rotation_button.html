@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+    div, button {
+        transition: all 1s ease-in-out;
+    }
+
+    div.leftState {
+        height: 100px;
+        width: 100px;
+        border: 2px solid red;
+        background: darkblue;
+        color: darkred;
+    }
+    button.leftState {
+        transform: rotate(-360deg);
+        background: #ffcccc;
+    }
+
+    div.rightState {
+        height: 100px;
+        width: 500px;
+        border: 2px solid blue;
+        background: darkred;
+        color: darkblue;
+    }
+    button.rightState {
+        transform: rotate(500deg);
+        background: #cce0ff;
+    }
+
+    button:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+</style>
+
+<div class="leftState" id="myDiv">Мой первый JavaScript</div>
+<button class="leftState" id="myButton">Кнопка</button>
+
+<script>
+    myButton.onclick = function() {
+        const isLeftState = myDiv.classList.contains("leftState");
+        
+        myDiv.classList.toggle("leftState")
+        myDiv.classList.toggle("rightState");
+        
+        myButton.classList.toggle("leftState");
+        myButton.classList.toggle("rightState");
+        
+        myButton.textContent = isLeftState ? "Свернуть" : "Развернуть";
+    }
+</script>
+
+</body>
+</html>
